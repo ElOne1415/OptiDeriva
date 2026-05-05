@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>OptiDeriva</title>
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <header class="app-header">
+      <div>
+        <p class="eyebrow">Cálculo diferencial</p>
+        <h1>OptiDeriva</h1>
+        <H6>Juan Fajardo<br>
+          Carlos Siza</H6>
+      </div>
+      <nav class="tabs" aria-label="Vistas principales">
+        <button class="tab active" data-view="analizador" type="button">Analizador</button>
+        <button class="tab" data-view="optimizacion" type="button">Optimización</button>
+        <button class="tab" data-view="practica" type="button">Práctica</button>
+      </nav>
+    </header>
+
+    <main>
+      <section id="analizador" class="view active" aria-labelledby="analizador-title">
+        <div class="workspace">
+          <aside class="panel input-panel">
+            <h2 id="analizador-title">Análisis de funciones</h2>
+            <label for="function-input">Función</label>
+            <div class="input-row">
+              <span>f(x)=</span>
+              <input id="function-input" type="text" value="(x^2 + 1)/(x - 2)" autocomplete="off">
+            </div>
+            <div class="math-preview" aria-live="polite">
+              <span class="result-label">Vista matemática</span>
+              <strong id="function-preview">-</strong>
+            </div>
+            <div class="math-keyboard" aria-label="Teclado matemático">
+              <button type="button" data-insert="x">x</button>
+              <button type="button" data-insert="^2">x²</button>
+              <button type="button" data-insert="^3">x³</button>
+              <button type="button" data-insert="^">xⁿ</button>
+              <button type="button" data-insert="/">÷</button>
+              <button type="button" data-insert="(">(</button>
+              <button type="button" data-insert=")">)</button>
+              <button type="button" data-insert="sqrt(">√</button>
+              <button type="button" data-insert="sin(">sin</button>
+              <button type="button" data-insert="cos(">cos</button>
+              <button type="button" data-insert="tan(">tan</button>
+              <button type="button" data-insert="ln(">ln</button>
+              <button type="button" data-insert="exp(">eˣ</button>
+              <button type="button" data-insert="pi">π</button>
+              <button type="button" data-insert="e">e</button>
+            </div>
+            <div class="examples" aria-label="Ejemplos de funciones">
+              <button type="button" data-example="x^2 - 4x + 3">x^2 - 4x + 3</button>
+              <button type="button" data-example="(x^2 + 1)/(x - 2)">(x^2 + 1)/(x - 2)</button>
+              <button type="button" data-example="sin(x) + x/3">sin(x) + x/3</button>
+              <button type="button" data-example="sqrt(x + 5) + ln(x + 6)">sqrt(x + 5) + ln(x + 6)</button>
+            </div>
+            <button class="primary-action" id="analyze-btn" type="button">Analizar función</button>
+            <p class="hint">Acepta polinomios, fracciones, potencias, raíces, senos, cosenos, tangentes, logaritmos y exponenciales.</p>
+          </aside>
+
+          <section class="panel results-panel" aria-live="polite">
+            <div class="result-grid">
+              <article>
+                <span class="result-label">Función</span>
+                <strong id="function-output">-</strong>
+              </article>
+              <article>
+                <span class="result-label">Derivada</span>
+                <strong id="derivative-output">-</strong>
+              </article>
+              <article>
+                <span class="result-label">Puntos críticos</span>
+                <strong id="critical-output">-</strong>
+              </article>
+            </div>
+            <div class="graph-wrap">
+              <canvas id="graph" width="920" height="520" aria-label="Gráfica de la función"></canvas>
+            </div>
+            <div class="change-summary" id="change-summary"></div>
+            <div class="explanation">
+              <h3>Procedimiento</h3>
+              <ol id="steps-output"></ol>
+            </div>
+          </section>
+        </div>
+      </section>
+
+      <section id="optimizacion" class="view" aria-labelledby="optimizacion-title">
+        <div class="workspace two-column">
+          <aside class="panel input-panel">
+            <h2 id="optimizacion-title">Problema de optimización</h2>
+            <label for="problem-select">Tipo de problema</label>
+            <select id="problem-select">
+              <option value="ganancia">Maximizar ganancias</option>
+              <option value="costo">Minimizar costos</option>
+              <option value="area">Optimizar área</option>
+            </select>
+            <div id="problem-fields"></div>
+            <button class="primary-action" id="solve-problem-btn" type="button">Resolver problema</button>
+          </aside>
+
+          <section class="panel optimization-output" aria-live="polite">
+            <h2>Resultado aplicado</h2>
+            <div id="problem-result"></div>
+          </section>
+        </div>
+      </section>
+
+      <section id="practica" class="view" aria-labelledby="practica-title">
+        <div class="practice-layout">
+          <section class="panel practice-card">
+            <h2 id="practica-title">Modo práctica</h2>
+            <p id="question-text"></p>
+            <div id="answer-options" class="answer-options"></div>
+            <div class="practice-actions">
+              <button id="check-answer-btn" class="primary-action" type="button">Comprobar</button>
+              <button id="next-question-btn" type="button">Siguiente</button>
+            </div>
+            <p id="feedback" class="feedback" aria-live="polite"></p>
+          </section>
+          <section class="panel score-panel">
+            <span class="result-label">Puntaje</span>
+            <strong id="score">0 / 0</strong>
+          </section>
+        </div>
+      </section>
+    </main>
+
+    <script src="app.js"></script>
+  </body>
+</html>
