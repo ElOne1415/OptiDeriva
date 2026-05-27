@@ -851,11 +851,7 @@ canvas {
   .key-grid {
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
-
-  .visual-input-row {
-    padding-inline: 14px;
-  }
-
+  
   .equation-visual {
     font-size: 1.08rem;
   }
